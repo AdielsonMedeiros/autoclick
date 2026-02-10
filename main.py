@@ -1,9 +1,10 @@
 import time
 import threading
+import random
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Listener, KeyCode
 
-DELAY = 0.03
+DELAY = 0.04
 BUTTON = Button.left
 TOGGLE_KEY = KeyCode(char='s')
 EXIT_KEY = KeyCode(char='e')
@@ -35,7 +36,8 @@ class ClickMouse(threading.Thread):
         while self.program_running.is_set():
             while self.running.is_set():
                 mouse.click(self.button)
-                time.sleep(self.delay)
+                actual_delay = self.delay + random.uniform(0.01, 0.03)
+                time.sleep(actual_delay)
             time.sleep(0.1)
 
 def main():
