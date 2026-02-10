@@ -3,7 +3,7 @@ import threading
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Listener, KeyCode
 
-DELAY = 0.1
+DELAY = 0.03
 BUTTON = Button.left
 TOGGLE_KEY = KeyCode(char='s')
 EXIT_KEY = KeyCode(char='e')
@@ -13,26 +13,27 @@ class ClickMouse(threading.Thread):
         super(ClickMouse, self).__init__()
         self.delay = delay
         self.button = button
-        self.running = False
-        self.program_running = True
+        self.running = threading.Event()
+        self.program_running = threading.Event()
+        self.program_running.set()
 
     def start_clicking(self):
-        self.running = True
+        self.running.set()
         print("[STATUS] AutoClicker ATIVADO.")
 
     def stop_clicking(self):
-        self.running = False
+        self.running.clear()
         print("[STATUS] AutoClicker PAUSADO.")
 
     def exit(self):
         self.stop_clicking()
-        self.program_running = False
+        self.program_running.clear()
         print("[STATUS] Encerrando programa...")
 
     def run(self):
         mouse = Controller()
-        while self.program_running:
-            while self.running:
+        while self.program_running.is_set():
+            while self.running.is_set():
                 mouse.click(self.button)
                 time.sleep(self.delay)
             time.sleep(0.1)
@@ -43,7 +44,7 @@ def main():
 
     def on_press(key):
         if key == TOGGLE_KEY:
-            if click_thread.running:
+            if click_thread.running.is_set():
                 click_thread.stop_clicking()
             else:
                 click_thread.start_clicking()
