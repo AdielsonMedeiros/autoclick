@@ -33,11 +33,20 @@ class ClickMouse(threading.Thread):
 
     def run(self):
         mouse = Controller()
+        click_count = 0
         while self.program_running.is_set():
             while self.running.is_set():
                 mouse.click(self.button)
-                actual_delay = self.delay + random.uniform(0.01, 0.03)
-                time.sleep(actual_delay)
+                click_count += 1
+
+                if click_count >= 80:
+                    time.sleep(2)
+                    click_count = 0
+                else:
+                    actual_delay = self.delay + random.uniform(0.01, 0.03)
+                    time.sleep(actual_delay)
+            
+            click_count = 0
             time.sleep(0.1)
 
 def main():
