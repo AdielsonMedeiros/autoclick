@@ -2,12 +2,12 @@ import time
 import threading
 import random
 from pynput.mouse import Button, Controller
-from pynput.keyboard import Listener, KeyCode
+from pynput.keyboard import Listener, KeyCode, Key
 
 DELAY = 0.04
 BUTTON = Button.left
-TOGGLE_KEY = KeyCode(char='s')
-EXIT_KEY = KeyCode(char='e')
+TOGGLE_KEY = Key.f1
+EXIT_KEY = Key.f2
 
 class ClickMouse(threading.Thread):
     def __init__(self, delay, button):
@@ -67,8 +67,8 @@ def main():
     print("      PYTHON AUTOCLICKER     ")
     print("=========================================")
     print(f"Teclas de Atalho:")
-    print(f"  [{TOGGLE_KEY.char.upper()}] -> Iniciar / Parar")
-    print(f"  [{EXIT_KEY.char.upper()}] -> Encerrar Programa")
+    print(f"  [F1] -> Iniciar / Parar")
+    print(f"  [F2] -> Encerrar Programa")
     print(f"Configuração:")
     print(f"  Delay: {DELAY} seg")
     print(f"  Botão: {BUTTON.name}")
