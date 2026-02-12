@@ -6,8 +6,8 @@ from pynput.keyboard import Listener, KeyCode, Key
 
 DELAY = 0.04
 BUTTON = Button.left
-TOGGLE_KEY = Key.f1
-EXIT_KEY = Key.f2
+TOGGLE_KEY = KeyCode.from_char('1')
+EXIT_KEY = KeyCode.from_char('2')
 
 class ClickMouse(threading.Thread):
     def __init__(self, delay, button):
@@ -67,8 +67,8 @@ def main():
     print("      PYTHON AUTOCLICKER     ")
     print("=========================================")
     print(f"Teclas de Atalho:")
-    print(f"  [F1] -> Iniciar / Parar")
-    print(f"  [F2] -> Encerrar Programa")
+    print(f"  [1] -> Iniciar / Parar")
+    print(f"  [2] -> Encerrar Programa")
     print(f"Configuração:")
     print(f"  Delay: {DELAY} seg")
     print(f"  Botão: {BUTTON.name}")

@@ -39,8 +39,8 @@ python main.py
 
 ### Atalhos Padrão:
 
-- **`S`**: Alternar entre **Iniciar** e **Parar** os cliques.
-- **`E`**: **Encerrar** o programa completamente.
+- **`1`**: Alternar entre **Iniciar** e **Parar** os cliques.
+- **`2`**: **Encerrar** o programa completamente.
 
 ## ⚙️ Configuração
 
